@@ -44,7 +44,7 @@ const Dashboard = () => {
                 const token = JSON.parse(localStorage.getItem('userInfo'))?.token;
                 if (!token) return;
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const { data } = await axios.get('http://localhost:5000/api/auth/me', config);
+                const { data } = await axios.get('/api/auth/me', config);
                 updateUser({ ...data, token });
             } catch (error) {
                 console.error(error);
@@ -76,7 +76,7 @@ const Dashboard = () => {
         try {
             const token = user.token;
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            await axios.post('http://localhost:5000/api/journals', {
+            await axios.post('/api/journals', {
                 content,
                 mood,
                 timeTaken: elapsedTime
@@ -87,7 +87,7 @@ const Dashboard = () => {
             setMood('');
             setIsJournaledToday(true);
 
-            const { data } = await axios.get('http://localhost:5000/api/auth/me', config);
+            const { data } = await axios.get('/api/auth/me', config);
             updateUser({ ...data, token });
         } catch (error) {
             setIsWriting(true); // Resume on error?

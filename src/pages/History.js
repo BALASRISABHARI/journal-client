@@ -12,7 +12,7 @@ const History = () => {
     const fetchJournals = async () => {
         try {
             const config = { headers: { Authorization: `Bearer ${user.token}` } };
-            const { data } = await axios.get('http://localhost:5000/api/journals', config);
+            const { data } = await axios.get('/api/journals', config);
             setJournals(data);
         } catch (error) {
             console.error(error);
@@ -29,7 +29,7 @@ const History = () => {
         if (!window.confirm('Are you sure you want to delete this journal? This might affect your streak.')) return;
         try {
             const config = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.delete(`http://localhost:5000/api/journals/${id}`, config);
+            await axios.delete(`/api/journals/${id}`, config);
             // Quick update UI
             setJournals(journals.filter(j => j._id !== id));
         } catch (error) {

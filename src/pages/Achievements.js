@@ -21,7 +21,7 @@ const Achievements = () => {
         try {
             const token = user.token;
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const { data } = await axios.post('http://localhost:5000/api/journals/buy', { itemId: 'streak-freezer' }, config);
+            const { data } = await axios.post('/api/journals/buy', { itemId: 'streak-freezer' }, config);
 
             setMsg(data.message);
             // Refresh user
@@ -77,8 +77,8 @@ const Achievements = () => {
                                 onClick={buyFreezer}
                                 disabled={loading || user?.journalPoints < 50}
                                 className={`w-full py-2 rounded-lg font-semibold transition-all ${user?.journalPoints >= 50
-                                        ? 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-500/30'
-                                        : 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                                    ? 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-500/30'
+                                    : 'bg-slate-700 text-slate-500 cursor-not-allowed'
                                     }`}
                             >
                                 {loading ? 'Purchasing...' : 'Buy Freezer'}
