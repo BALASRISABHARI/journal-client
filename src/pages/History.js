@@ -59,7 +59,7 @@ const History = () => {
                             transition={{ delay: index * 0.05 }}
                             className="glass-card p-6 hover:bg-white/10 transition-colors"
                         >
-                            <div className="flex justify-between items-start mb-4">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 gap-4">
                                 <div className="flex items-center gap-4">
                                     <div className={`p-3 rounded-lg ${journal.mood === 'Happy' ? 'bg-yellow-400/20 text-yellow-400' :
                                         journal.mood === 'Calm' ? 'bg-blue-300/20 text-blue-300' :

@@ -18,13 +18,13 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="glass-panel sticky top-4 mx-4 mb-8 z-50 px-6 py-4 flex justify-between items-center text-slate-100">
+        <nav className="glass-panel sticky top-4 mx-2 md:mx-4 mb-8 z-50 px-3 md:px-6 py-4 flex justify-between items-center text-slate-100">
             <div className="flex items-center gap-2">
                 <div className="p-2 bg-indigo-600 rounded-lg shadow-lg shadow-indigo-500/30">
                     <Sprout className="text-white" size={24} />
                 </div>
-                <h1 className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-200">
-                    2-Minute Journal
+                <h1 className="text-lg md:text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-200">
+                    2-Minute <span className="hidden sm:inline">Journal</span>
                 </h1>
             </div>
 
@@ -39,7 +39,7 @@ const Navbar = () => {
                             }`}
                     >
                         {item.icon}
-                        <span className="font-medium">{item.name}</span>
+                        <span className="font-medium hidden md:block">{item.name}</span>
                     </Link>
                 ))}
             </div>

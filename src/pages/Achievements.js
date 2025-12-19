@@ -36,7 +36,7 @@ const Achievements = () => {
         <div className="max-w-4xl mx-auto space-y-12">
 
             {/* Header */}
-            <div className="flex justify-between items-end">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
                 <div>
                     <h2 className="text-3xl font-bold text-white mb-2">Achievements & Store</h2>
                     <p className="text-slate-400">Earn badges and use points to protect your streak.</p>
