@@ -8,11 +8,17 @@ const Analytics = () => {
     const { user } = useAuth();
     const [stats, setStats] = useState(null);
 
+    // 🔥 IMPORTANT — Load backend URL for deployed environment
+    const API = import.meta.env.VITE_API_URL;
+
     useEffect(() => {
         const fetchStats = async () => {
             try {
                 const config = { headers: { Authorization: `Bearer ${user.token}` } };
-                const { data } = await axios.get('/api/journals/analytics', config);
+
+                // 🔥 UPDATED URL — now points to Render backend
+                const { data } = await axios.get(`${API}/api/journals/analytics`, config);
+
                 setStats(data);
             } catch (error) {
                 console.error(error);
@@ -21,7 +27,7 @@ const Analytics = () => {
         fetchStats();
     }, [user]);
 
-    const COLORS = ['#FACC15', '#60A5FA', '#818CF8', '#F87171']; // Handpicked for moods
+    const COLORS = ['#FACC15', '#60A5FA', '#818CF8', '#F87171'];
 
     return (
         <div className="max-w-6xl mx-auto">
