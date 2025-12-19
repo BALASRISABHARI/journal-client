@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { Flame, Book, Calendar, Sun, Cloud, CloudRain, Zap, Send, Clock, Lock, Play } from 'lucide-react';
 import axios from 'axios';
 
+const API = import.meta.env.VITE_API_URL; // ⭐ ADDED
+
 const Dashboard = () => {
     const { user, updateUser } = useAuth();
     const [content, setContent] = useState('');
@@ -44,7 +46,9 @@ const Dashboard = () => {
                 const token = JSON.parse(localStorage.getItem('userInfo'))?.token;
                 if (!token) return;
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const { data } = await axios.get('/api/auth/me', config);
+
+                const { data } = await axios.get(`${API}/api/auth/me`, config); // ⭐ UPDATED
+
                 updateUser({ ...data, token });
             } catch (error) {
                 console.error(error);
@@ -76,7 +80,8 @@ const Dashboard = () => {
         try {
             const token = user.token;
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            await axios.post('/api/journals', {
+
+            await axios.post(`${API}/api/journals`, { // ⭐ UPDATED
                 content,
                 mood,
                 timeTaken: elapsedTime
@@ -87,7 +92,8 @@ const Dashboard = () => {
             setMood('');
             setIsJournaledToday(true);
 
-            const { data } = await axios.get('/api/auth/me', config);
+            const { data } = await axios.get(`${API}/api/auth/me`, config); // ⭐ UPDATED
+
             updateUser({ ...data, token });
         } catch (error) {
             setIsWriting(true); // Resume on error?

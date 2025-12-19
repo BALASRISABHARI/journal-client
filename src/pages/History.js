@@ -4,6 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Smile, Trash2 } from 'lucide-react';
 
+const API = import.meta.env.VITE_API_URL; // ⭐ ADDED
+
 const History = () => {
     const { user } = useAuth();
     const [journals, setJournals] = useState([]);
@@ -12,7 +14,7 @@ const History = () => {
     const fetchJournals = async () => {
         try {
             const config = { headers: { Authorization: `Bearer ${user.token}` } };
-            const { data } = await axios.get('/api/journals', config);
+            const { data } = await axios.get(`${API}/api/journals`, config); // ⭐ UPDATED
             setJournals(data);
         } catch (error) {
             console.error(error);
@@ -29,8 +31,7 @@ const History = () => {
         if (!window.confirm('Are you sure you want to delete this journal? This might affect your streak.')) return;
         try {
             const config = { headers: { Authorization: `Bearer ${user.token}` } };
-            await axios.delete(`/api/journals/${id}`, config);
-            // Quick update UI
+            await axios.delete(`${API}/api/journals/${id}`, config); // ⭐ UPDATED
             setJournals(journals.filter(j => j._id !== id));
         } catch (error) {
             console.error(error);
